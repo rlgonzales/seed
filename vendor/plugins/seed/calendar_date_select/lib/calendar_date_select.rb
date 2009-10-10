@@ -1,7 +1,9 @@
 require "calendar_date_select/calendar_date_select.rb"
 require "calendar_date_select/includes_helper.rb"
 
-if Object.const_defined?(:Rails) && File.directory?(Rails.root + "/public")
+#if Object.const_defined?(:Rails) && File.directory?(Rails.root + "/public")
+# commented for calendar_date_select and rails 2.3.3 version
+if Object.const_defined?(:Rails) && File.directory?(Rails.public_path)
   ActionView::Helpers::FormHelper.send(:include, CalendarDateSelect::FormHelper)
   ActionView::Base.send(:include, CalendarDateSelect::FormHelper)
   ActionView::Base.send(:include, CalendarDateSelect::IncludesHelper)

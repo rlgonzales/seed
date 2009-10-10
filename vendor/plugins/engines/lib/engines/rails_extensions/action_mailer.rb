@@ -70,7 +70,9 @@ module Engines::RailsExtensions::ActionMailer
       # 
       # ActionView::Base.new(ActionController::Base.view_paths.dup, assigns, self)
       renderer = initialize_template_class_without_engine_additions(assigns)
-      renderer.finder.view_paths.unshift(*ActionController::Base.view_paths.dup)
+      renderer.view_paths.unshift(*ActionController::Base.view_paths.dup)
+      #http://www.paulwelty.com/ruby-on-rails/nomethoderror-undefined-method-finder-with-engines-and-rails-22/
+      #renderer.finder.view_paths.unshift(*ActionController::Base.view_paths.dup)
       renderer
     end
 end
