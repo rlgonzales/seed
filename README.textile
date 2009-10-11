@@ -1,5 +1,16 @@
 !http://seed.mediacollectiveslice.com/images/demo.png!
 
+My fork's mods:
+1. Use paperclip instead of attachment_fu
+   TODO: clean-up all image related usage with paperclip
+2. On script/setup demo:
+   Prompt to use MySQL or the default SQLite database.yml
+   TODO: at least accept parameters for the connection parameters on dev mode
+3. Generic header display, use the values in settings.yml
+
+More to come...
+Hope to load this asap for my personal blog (www.chardgonzales.com).
+
 h1. Seed
 
 a Common Sense CMS from The Media Collective.
