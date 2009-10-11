@@ -13,8 +13,8 @@
 	<% cache "article-#{newsitem.id}-images" do %>
 	<div id="images">
     <% newsitem.images.each do |image| %>
-    	<a href="<%= image.public_filename %>" class="lightview" rel="gallery[<%= newsitem.id %>]">
-        <%= image_tag image.public_filename("#{newsitem.imagesize}"), :size => image.thumbnail_size("#{newsitem.imagesize}") %>
+      <a href="<%= image.uploaded_data.url(:thumb400)%>" class="lightview" rel="gallery[<%= newsitem.id %>]">
+        <%= image_tag image.uploaded_data.url("#{newsitem.imagesize}")%>
       </a>
     <% end -%>
   </div>

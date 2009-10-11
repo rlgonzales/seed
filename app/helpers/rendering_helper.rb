@@ -68,17 +68,21 @@ module RenderingHelper
   # default. To use an alternative tag just pass an extra parameter seed_page_title "h2"
   #
   def seed_page_title(tag="h1")
-    if @page
-      content_tag(tag, @page.title)
-    else
-      content_tag(tag, @page_title || APP_CONFIG[:site_name])
-    end
+    # if @page
+    #   content_tag(tag, @page.title)
+    # else
+    #   content_tag(tag, @page_title || APP_CONFIG[:site_name])
+    # end
+    # prefer to keep a generic header
+    content_tag tag, APP_CONFIG[:site_name]
   end
   
   # Self explanatory. Display the page description if present. Defaults to a p tag. To use an 
   # alternative tag just pass the extra parameter seed_page_description "h3"
   def seed_page_description(tag="p")
-    content_tag(tag, @page.description) unless !@page
+    #content_tag(tag, @page.description) unless !@page
+    # prefer to keep a generic header description
+    content_tag tag, APP_CONFIG[:site_description]
   end
   
   # seed_site_search renders the search input and submit tags and takes two optional 

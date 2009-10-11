@@ -34,9 +34,22 @@ module Seed
       Dir['config/examples/*'].each do |source|
         destination = "config/#{File.basename(source)}"
         unless File.exist? destination
-          FileUtils.cp(source, destination)
+          #omit database.yml
+          unless source.to_s == "database_mysql.yml" || source.to_s == "database_sqlite.yml"
+            FileUtils.cp(source, destination)
+          end
           puts "Generated #{destination}"
         end
+      end
+      
+      dbtouse = ask("Do you want to use MySQL instead (default is SQLite3) [y/n]? ")
+      if dbtouse.to_s == "y" || dbtouse.to_s == "Y"
+        #TODO: input for MySQL username, password and host then modify database.yml
+        #      before copying to the config folder
+        FileUtils.cp('config/examples/database_mysql.yml', 'config/database.yml')
+        system "rake db:create:all --trace"
+      else
+        FileUtils.cp('config/examples/database_sqlite.yml', 'config/database.yml')
       end
       
       app_plugin = "vendor/plugins/#{appname}_engine"
